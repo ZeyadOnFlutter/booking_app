@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/resources/color_manager.dart'; // adjust path if needed
 import '../../../home/presentation/cubit/booking_cubit.dart';
 import '../../../home/presentation/cubit/booking_state.dart';
-import '../../../../core/resources/color_manager.dart'; // adjust path if needed
 
 class BookingsHeaderTitle extends StatelessWidget {
   const BookingsHeaderTitle({super.key});

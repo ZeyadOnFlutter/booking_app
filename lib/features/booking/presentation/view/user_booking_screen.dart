@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/service/service_locator.dart';
 import '../../../../core/utils/ui_utils.dart';
 import '../../../../core/widgets/loading_indicator.dart';
-import '../../../auth/presentation/cubit/auth_hydrated_cubit.dart';
 import '../../../home/presentation/cubit/booking_cubit.dart';
 import '../../../home/presentation/cubit/booking_state.dart';
 import '../../../home/presentation/widgets/app_snack_bar.dart';
