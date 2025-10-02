@@ -176,10 +176,12 @@ class _SessionItem extends StatelessWidget {
                 UIUtils.showLoading(context);
               } else if (state is UpdateBookingError) {
                 UIUtils.hideLoading(context);
+                Navigator.pop(dialogContext);
                 Navigator.pop(context);
                 AppSnackBar.error(context, state.message);
               } else if (state is UpdateBookingSuccess) {
                 UIUtils.hideLoading(context);
+                Navigator.pop(dialogContext);
                 Navigator.pop(context);
                 AppSnackBar.success(context, 'Session rescheduled!');
               }

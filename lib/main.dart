@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +31,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   await setupLocator();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
@@ -51,7 +55,7 @@ class BookingApp extends StatelessWidget {
               create: (context) => getIt<AuthCubit>(),
             ),
             BlocProvider<SessionCubit>(
-              create: (context) => getIt<SessionCubit>()..getSessions(),
+              create: (context) => getIt<SessionCubit>(),
             ),
             BlocProvider<BookingCubit>(
               create: (context) => getIt<BookingCubit>(),

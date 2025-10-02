@@ -33,7 +33,7 @@ class CalendarWidget extends StatelessWidget {
             todaySessionsCount: todaySessions.length,
             totalSessionsCount: sessions.length,
           ),
-          const SwipeIndicator(),
+          const CalendarInstructions(),
           SizedBox(height: 16.h),
           Expanded(
             child: Container(

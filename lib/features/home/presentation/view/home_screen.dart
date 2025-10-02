@@ -20,10 +20,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final bookingCubit = getIt<BookingCubit>();
   final authCubit = getIt<AuthCubit>();
+  final sessionCubit = getIt<SessionCubit>();
   @override
   void initState() {
     super.initState();
     bookingCubit.getBookings(authCubit.currentUser!.id);
+    sessionCubit.getSessions();
   }
 
   @override

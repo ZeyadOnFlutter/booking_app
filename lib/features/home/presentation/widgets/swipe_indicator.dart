@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SwipeIndicator extends StatelessWidget {
-  const SwipeIndicator({super.key});
+import 'instruction_item.dart';
+
+class CalendarInstructions extends StatelessWidget {
+  const CalendarInstructions({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: const Color(0xFF3B82F6).withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
@@ -18,27 +20,20 @@ class SwipeIndicator extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(
-            Icons.swipe_rounded,
-            color: const Color(0xFF3B82F6),
-            size: 18.sp,
+          const InstructionItem(
+            icon: Icons.swipe_rounded,
+            text: 'Swipe to change day',
           ),
-          SizedBox(width: 8.w),
-          Text(
-            'Swipe to change day',
-            style: TextStyle(
-              color: const Color(0xFF3B82F6),
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w500,
-            ),
+          Container(
+            width: 1,
+            height: 20.h,
+            color: const Color(0xFF3B82F6).withOpacity(0.3),
           ),
-          SizedBox(width: 8.w),
-          Icon(
-            Icons.arrow_forward_rounded,
-            color: const Color(0xFF3B82F6),
-            size: 16.sp,
+          const InstructionItem(
+            icon: Icons.touch_app_rounded,
+            text: 'Tap session to book',
           ),
         ],
       ),
