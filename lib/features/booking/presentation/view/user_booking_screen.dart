@@ -13,21 +13,8 @@ import '../../../home/presentation/widgets/error_item.dart';
 import '../widgets/booking_card.dart';
 import '../widgets/bookings_header.dart';
 
-class UserBookingsScreen extends StatefulWidget {
+class UserBookingsScreen extends StatelessWidget {
   const UserBookingsScreen({super.key});
-
-  @override
-  State<UserBookingsScreen> createState() => _UserBookingsScreenState();
-}
-
-class _UserBookingsScreenState extends State<UserBookingsScreen> {
-  final bookingCubit = getIt<BookingCubit>();
-  final authCubit = getIt<AuthCubit>();
-  @override
-  void initState() {
-    super.initState();
-    bookingCubit.getBookings(authCubit.currentUser!.id);
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -55,4 +55,14 @@ class SessionRepositoryImpl implements SessionRepository {
       return Left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> updateBooking(BookingEntity bookingEntity) async {
+    try {
+      await _firebaseSessionsDataSource.updateBookingInFireStore(bookingEntity.toModel);
+      return const Right(unit);
+    } on RemoteException catch (e) {
+      return Left(Failure(e.message));
+    }
+  }
 }

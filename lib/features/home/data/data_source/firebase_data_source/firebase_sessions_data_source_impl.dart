@@ -89,4 +89,16 @@ class FirebaseSessionsDataSourceImpl implements FirebaseSessionsDataSource {
       throw Exception(e.toString());
     }
   }
+
+  @override
+  Future<void> updateBookingInFireStore(BookingModel bookingModel) async {
+    try {
+      final CollectionReference<BookingModel> bookingCollection = getSessionBookingCollection();
+      await bookingCollection.doc(bookingModel.id).set(bookingModel);
+    } on FirebaseException catch (e) {
+      throw FirebaseErrorHandler.handleFirestoreError(e);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

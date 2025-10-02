@@ -47,7 +47,7 @@ class CalendarHeader extends StatelessWidget {
 
           InkWell(
             onTap: () {
-              context.goNamed(RouteNames.booking);
+              context.pushNamed(RouteNames.booking);
             },
             borderRadius: BorderRadius.circular(12.r),
             child: Container(

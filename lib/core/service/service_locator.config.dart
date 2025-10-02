@@ -46,6 +46,8 @@ import 'package:booking_app/features/home/domain/use_case/get_booking_use_case.d
     as _i1050;
 import 'package:booking_app/features/home/domain/use_case/session_use_case.dart'
     as _i419;
+import 'package:booking_app/features/home/domain/use_case/update_booking_use_case.dart'
+    as _i860;
 import 'package:booking_app/features/home/presentation/cubit/booking_cubit.dart'
     as _i783;
 import 'package:booking_app/features/home/presentation/cubit/session_cubit.dart'
@@ -98,13 +100,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1050.GetBookingUseCase(gh<_i1007.SessionRepository>()));
     gh.lazySingleton<_i419.SessionUseCase>(
         () => _i419.SessionUseCase(gh<_i1007.SessionRepository>()));
+    gh.lazySingleton<_i860.UpdateBookingUseCase>(
+        () => _i860.UpdateBookingUseCase(gh<_i1007.SessionRepository>()));
+    gh.lazySingleton<_i577.SessionCubit>(
+        () => _i577.SessionCubit(gh<_i419.SessionUseCase>()));
     gh.lazySingleton<_i783.BookingCubit>(() => _i783.BookingCubit(
           gh<_i407.AddBookingUseCase>(),
           gh<_i1050.GetBookingUseCase>(),
           gh<_i998.DeleteBookingUseCase>(),
+          gh<_i860.UpdateBookingUseCase>(),
         ));
-    gh.lazySingleton<_i577.SessionCubit>(
-        () => _i577.SessionCubit(gh<_i419.SessionUseCase>()));
     gh.singleton<_i713.AuthCubit>(() => _i713.AuthCubit(
           gh<_i131.FacebookSignInUseCase>(),
           gh<_i982.GoogleSignInUseCase>(),

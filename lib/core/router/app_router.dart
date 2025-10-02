@@ -1,4 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../features/auth/presentation/cubit/auth_hydrated_cubit.dart';
+import '../../features/auth/presentation/cubit/auth_state.dart';
 import '../../features/auth/presentation/view/login.dart';
 import '../../features/auth/presentation/view/regsiter.dart';
 import '../../features/booking/presentation/view/user_booking_screen.dart';
@@ -10,23 +15,40 @@ import 'route_paths.dart';
 final GoRouter router = GoRouter(
   initialLocation: RoutePaths.onboarding,
   debugLogDiagnostics: true,
-  // redirect: (context, state) {
-  //   final authCubit = context.read<AuthCubit>();
-  //   final isAuthenticated = authCubit.state is Authenticated;
+  redirect: (context, state) async {
+    final authCubit = context.read<AuthCubit>();
+    final isAuthenticated = authCubit.state is Authenticated;
 
-  //   // if not logged in, always go to login
-  //   if (!isAuthenticated && state.fullPath != RoutePaths.login) {
-  //     return RoutePaths.login;
-  //   }
+    final prefs = await SharedPreferences.getInstance();
+    final hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
 
-  //   // if logged in and trying to go to login/register, send to home
-  //   if (isAuthenticated &&
-  //       (state.fullPath == RoutePaths.login || state.fullPath == RoutePaths.register)) {
-  //     return RoutePaths.home;
-  //   }
+    final loggingIn = state.fullPath == RoutePaths.login;
+    final registering = state.fullPath == RoutePaths.register;
+    final onboarding = state.fullPath == RoutePaths.onboarding;
 
-  //   return null;
-  // },
+    // First time → force onboarding
+    if (!hasSeenOnboarding && !onboarding) {
+      return RoutePaths.onboarding;
+    }
+
+    // After seen → block onboarding
+    if (hasSeenOnboarding && onboarding) {
+      return isAuthenticated ? RoutePaths.home : RoutePaths.login;
+    }
+
+    // Not authenticated → block protected routes
+    final protectedRoutes = [RoutePaths.home, RoutePaths.booking];
+    if (!isAuthenticated && protectedRoutes.contains(state.fullPath)) {
+      return RoutePaths.login;
+    }
+
+    // Authenticated → block login/register/onboarding
+    if (isAuthenticated && (loggingIn || registering || onboarding)) {
+      return RoutePaths.home;
+    }
+
+    return null;
+  },
   routes: [
     GoRoute(
       path: RoutePaths.login,

@@ -10,7 +10,7 @@ class BookingsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -21,15 +21,18 @@ class BookingsHeader extends StatelessWidget {
           ),
         ],
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              BookingsHeaderTitle(),
-              LogoutButton(),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BookingsHeaderTitle(),
+                LogoutButton(),
+              ],
+            ),
           ),
         ],
       ),

@@ -32,6 +32,20 @@ class DeleteBookingSuccess extends BookingState {
   DeleteBookingSuccess(this.successMessage);
 }
 
+class UpdateBookingLoading extends BookingState {}
+
+class UpdateBookingError extends BookingState {
+  final String message;
+
+  UpdateBookingError(this.message);
+}
+
+class UpdateBookingSuccess extends BookingState {
+  final String successMessage;
+
+  UpdateBookingSuccess(this.successMessage);
+}
+
 class GetBookingLoading extends BookingState {}
 
 class GetBookingError extends BookingState {

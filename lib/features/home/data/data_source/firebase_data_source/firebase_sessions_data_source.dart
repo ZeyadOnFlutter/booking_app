@@ -10,4 +10,5 @@ abstract class FirebaseSessionsDataSource {
   Future<List<BookingModel>> getSessionBookingFromFireStore(String userId);
   Future<void> addBookingToFireStore(BookingModel bookingModel, String sessionId);
   Future<void> deleteBookingFromFireStore(String bookingId, String sessionId);
+  Future<void> updateBookingInFireStore(BookingModel bookingModel);
 }

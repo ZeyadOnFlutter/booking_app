@@ -5,6 +5,8 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/route_names.dart';
+import '../../../../core/service/service_locator.dart';
+import '../cubit/auth_hydrated_cubit.dart';
 import '../widgets/auth_bloc_listener.dart';
 import '../widgets/login_form.dart';
 
@@ -66,11 +68,11 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _onLoginPressed() {
-    // if (_formKey.currentState?.validate() ?? false) {
-    //   final authcubit = getIt<AuthCubit>();
-    //   authcubit.login(_emailController.text, _passwordController.text);
-    // }
+  void _onLoginPressed() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      final authcubit = getIt<AuthCubit>();
+      await authcubit.login(_emailController.text, _passwordController.text);
+    }
   }
 
   void _onRegisterPressed() {

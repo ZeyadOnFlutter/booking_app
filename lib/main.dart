@@ -54,9 +54,7 @@ class BookingApp extends StatelessWidget {
               create: (context) => getIt<SessionCubit>()..getSessions(),
             ),
             BlocProvider<BookingCubit>(
-              create: (context) =>
-                  getIt<BookingCubit>()..getBookings(getIt<AuthCubit>().currentUser?.id ?? ''),
-              lazy: false,
+              create: (context) => getIt<BookingCubit>(),
             ),
           ],
           child: MaterialApp.router(

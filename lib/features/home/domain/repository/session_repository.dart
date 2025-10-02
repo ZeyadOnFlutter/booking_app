@@ -9,4 +9,5 @@ abstract class SessionRepository {
   Future<Either<Failure, List<BookingEntity>>> getSessionBooking(String userId);
   Future<Either<Failure, Unit>> addBooking(BookingEntity bookingEntity, String sessionId);
   Future<Either<Failure, Unit>> deleteBooking(String bookingId, String sessionId);
+  Future<Either<Failure, Unit>> updateBooking(BookingEntity bookingEntity);
 }

@@ -14,6 +14,7 @@ import '../cubit/booking_cubit.dart';
 import '../cubit/booking_state.dart';
 import 'app_snack_bar.dart';
 import 'cancel_booking.dart';
+import 'update_booking_sheet.dart';
 
 void showSessionDetailsBottomSheet(BuildContext context, SessionEntity session) {
   final color = SessionHelpers.getSessionColor(session.type);
@@ -147,7 +148,15 @@ class SessionDetailsBottomSheet extends StatelessWidget {
                           // Cancel button
                           ElevatedButton(
                             onPressed: () {
-                              CancelBooking.handleCancel(context, existingBooking, session.id);
+                              final diff = session.startTime.difference(DateTime.now());
+                              if (diff.inHours < 2) {
+                                AppSnackBar.error(
+                                  context,
+                                  'You cannot cancel within 2 hours of the session start.',
+                                );
+                              } else {
+                                CancelBooking.handleCancel(context, existingBooking, session.id);
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFEF4444),
@@ -173,7 +182,15 @@ class SessionDetailsBottomSheet extends StatelessWidget {
                           // Reschedule button
                           ElevatedButton(
                             onPressed: () {
-                              _handleReschedule(context, existingBooking);
+                              final diff = session.startTime.difference(DateTime.now());
+                              if (diff.inHours < 2) {
+                                AppSnackBar.error(
+                                  context,
+                                  'You cannot reschedule within 2 hours of the session start.',
+                                );
+                              } else {
+                                _handleReschedule(context, existingBooking);
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF3B82F6),
@@ -266,6 +283,6 @@ class SessionDetailsBottomSheet extends StatelessWidget {
 
   void _handleReschedule(BuildContext context, BookingEntity booking) {
     Navigator.pop(context);
-    AppSnackBar.info(context, 'Reschedule feature coming soon!');
+    showRescheduleBottomSheet(context, booking);
   }
 }
