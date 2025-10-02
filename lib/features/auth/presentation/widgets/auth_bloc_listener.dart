@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/router/route_paths.dart';
 import '../../../../core/utils/ui_utils.dart';
 import '../cubit/auth_hydrated_cubit.dart';
 import '../cubit/auth_state.dart';

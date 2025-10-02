@@ -1,15 +1,14 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/auth/presentation/cubit/auth_hydrated_cubit.dart';
-import '../../features/auth/presentation/cubit/auth_state.dart';
 import '../../features/auth/presentation/view/login.dart';
 import '../../features/auth/presentation/view/regsiter.dart';
+import '../../features/booking/presentation/view/user_booking_screen.dart';
 import '../../features/home/presentation/view/home_screen.dart';
+import '../../features/onboarding/presentation/view/onboarding_screen.dart';
 import 'route_names.dart';
 import 'route_paths.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: RoutePaths.login,
+  initialLocation: RoutePaths.onboarding,
   debugLogDiagnostics: true,
   // redirect: (context, state) {
   //   final authCubit = context.read<AuthCubit>();
@@ -43,6 +42,16 @@ final GoRouter router = GoRouter(
       path: RoutePaths.home,
       name: RouteNames.home,
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: RoutePaths.booking,
+      name: RouteNames.booking,
+      builder: (context, state) => const UserBookingsScreen(),
+    ),
+    GoRoute(
+      path: RoutePaths.onboarding,
+      name: RouteNames.onboarding,
+      builder: (context, state) => const OnboardingScreen(),
     ),
   ],
 );

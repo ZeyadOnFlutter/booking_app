@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/router/route_names.dart';
 import '../../../../core/service/service_locator.dart';
 import '../../../auth/presentation/cubit/auth_hydrated_cubit.dart';
 
@@ -19,6 +21,7 @@ class CalendarHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          /// Left Greeting + User Info
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -41,12 +44,37 @@ class CalendarHeader extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            padding: EdgeInsets.all(12.w),
-            child: Image.asset(
-              'assets/images/running.png',
-              width: 40.w,
-              height: 40.h,
+
+          InkWell(
+            onTap: () {
+              context.goNamed(RouteNames.booking);
+            },
+            borderRadius: BorderRadius.circular(12.r),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: Colors.blueAccent.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.calendar_month_rounded,
+                    color: Colors.blueAccent,
+                    size: 22.sp,
+                  ),
+                  SizedBox(width: 6.w),
+                  Text(
+                    // ignore: prefer_single_quotes
+                    "My Bookings",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

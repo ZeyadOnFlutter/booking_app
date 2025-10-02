@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../domain/entities/session_entity.dart';
+import 'app_snack_bar.dart';
+import 'calendar_header.dart';
 import 'session_appointment_item.dart';
 import 'session_calendar_data_source.dart';
 import 'session_details_bottom_sheet.dart';
-import 'calendar_header.dart';
 import 'session_status_card.dart';
 import 'swipe_indicator.dart';
 
@@ -111,7 +112,14 @@ class CalendarWidget extends StatelessWidget {
                   onTap: (CalendarTapDetails details) {
                     if (details.appointments != null && details.appointments!.isNotEmpty) {
                       final SessionEntity session = details.appointments!.first as SessionEntity;
-                      showSessionDetailsBottomSheet(context, session);
+                      final currentTime = DateTime.now();
+                      if (currentTime.isAfter(session.endTime)) {
+                        AppSnackBar.error(context, 'Session Already Ended');
+                      } else if (currentTime.isAfter(session.startTime)) {
+                        AppSnackBar.error(context, 'Session ALready Started');
+                      } else {
+                        showSessionDetailsBottomSheet(context, session);
+                      }
                     }
                   },
                 ),
