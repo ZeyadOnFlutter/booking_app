@@ -69,10 +69,10 @@ class _LoginState extends State<Login> {
   }
 
   void _onLoginPressed() {
-    if (_formKey.currentState?.validate() ?? false) {
-      final authcubit = getIt<AuthCubit>();
-      authcubit.login(_emailController.text, _passwordController.text);
-    }
+    // if (_formKey.currentState?.validate() ?? false) {
+    //   final authcubit = getIt<AuthCubit>();
+    //   authcubit.login(_emailController.text, _passwordController.text);
+    // }
   }
 
   void _onRegisterPressed() {

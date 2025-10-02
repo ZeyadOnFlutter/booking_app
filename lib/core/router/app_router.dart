@@ -4,7 +4,7 @@ import '../../features/auth/presentation/cubit/auth_hydrated_cubit.dart';
 import '../../features/auth/presentation/cubit/auth_state.dart';
 import '../../features/auth/presentation/view/login.dart';
 import '../../features/auth/presentation/view/regsiter.dart';
-import '../../features/home/home_screen.dart';
+import '../../features/home/presentation/view/home_screen.dart';
 import 'route_names.dart';
 import 'route_paths.dart';
 

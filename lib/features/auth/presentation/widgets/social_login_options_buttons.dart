@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/service/service_locator.dart';
@@ -16,18 +17,24 @@ class SocialLoginOptionsButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Facebook Button
-        SocialCircleButton(
-          assetPath: SvgAssets.facebook,
-          backgroundColor: Colors.white,
-          onTap: _onFacebookPressed,
+        Bounceable(
+          onTap: () {},
+          child: SocialCircleButton(
+            assetPath: SvgAssets.facebook,
+            backgroundColor: Colors.white,
+            onTap: _onFacebookPressed,
+          ),
         ),
         SizedBox(width: 20.w),
 
         // Google Button
-        SocialCircleButton(
-          assetPath: SvgAssets.google,
-          backgroundColor: Colors.white,
-          onTap: _onGooglePressed,
+        Bounceable(
+          onTap: () {},
+          child: SocialCircleButton(
+            assetPath: SvgAssets.google,
+            backgroundColor: Colors.white,
+            onTap: _onGooglePressed,
+          ),
         ),
       ],
     );

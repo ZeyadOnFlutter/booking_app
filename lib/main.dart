@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +14,8 @@ import 'core/router/app_router.dart';
 import 'core/service/service_locator.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/cubit/auth_hydrated_cubit.dart';
+import 'features/home/presentation/cubit/booking_cubit.dart';
+import 'features/home/presentation/cubit/session_cubit.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -22,10 +27,12 @@ Future<void> main() async {
     storageDirectory:
         kIsWeb ? HydratedStorageDirectory.web : HydratedStorageDirectory(directory.path),
   );
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await setupLocator();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(const BookingApp()),
   );
@@ -45,6 +52,14 @@ class BookingApp extends StatelessWidget {
           providers: [
             BlocProvider<AuthCubit>(
               create: (context) => getIt<AuthCubit>(),
+            ),
+            BlocProvider<SessionCubit>(
+              create: (context) => getIt<SessionCubit>()..getSessions(),
+            ),
+            BlocProvider<BookingCubit>(
+              create: (context) =>
+                  getIt<BookingCubit>()..getBookings(getIt<AuthCubit>().currentUser?.id ?? ''),
+              lazy: false,
             ),
           ],
           child: MaterialApp.router(
