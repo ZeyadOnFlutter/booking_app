@@ -1,16 +1,44 @@
-# booking_app
+# Booking App - Flutter Frontend
 
-A new Flutter project.
+## Setup Instructions
 
-## Getting Started
+### Prerequisites
 
-This project is a starting point for a Flutter application.
+- Flutter SDK installed ([Install Flutter](https://docs.flutter.dev/get-started/install))
+- Android Studio with Android Emulator (for Android)
+- Xcode with iOS Simulator (for iOS - macOS only)
 
-A few resources to get you started if this is your first Flutter project:
+### How to Run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the repository:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+git clone <repository-url>
+cd booking_app
+```
+
+2. Install dependencies:
+
+```bash
+flutter pub get
+```
+
+3. Run the app:
+
+```bash
+flutter run
+```
+
+The app will launch on your connected emulator/simulator.
+
+## Implementation Details
+
+**State Management**: Hydrated Bloc (for persistent login)
+
+**Authentication**: Firebase Auth
+
+- Email/Password
+- Google Sign-In
+- Facebook Sign-In
+
+**Database**: Cloud Firestore
